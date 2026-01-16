@@ -1,0 +1,9 @@
+[project]
+name = "streetview-hunter"
+version = "1.0.0"
+description = "Автоматический сборщик панорам Google Street View"
+readme = "README.md"
+authors = [
+    {name = "Иван Засухин", email = "ivanzasukhin11@gmail.com"}
+]
+license = {text = "MIT"}
