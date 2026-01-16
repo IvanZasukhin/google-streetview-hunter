@@ -1,0 +1,73 @@
+# Конфигурация по умолчанию для StreetViewHunter
+# Используется, если не указана другая конфигурация
+
+name: "Город"
+description: "Настройки по умолчанию для поиска панорам"
+
+bounds:
+  lat_min: 0.0
+  lat_max: 0.0
+  lon_min: 0.0
+  lon_max: 0.0
+
+search_params:
+  step_km: 0.15      # Рекомендуемый шаг для большинства городов
+  search_radius: 50  # Средний радиус поиска
+  max_points: 1000   # Максимальное количество точек
+  delay: 0.03        # Безопасная задержка между запросами
+
+output:
+  filename: "panoramas.txt"
+  format: "google.de"           # или "google.com", "google.ru"
+  tile_size: "13312x6656"       # размер тайлов
+  zoom: "3a,75y,2.85h,90t"      # параметры просмотра
+  
+  # Дополнительные параметры ссылки
+  link_params:
+    tilt: "2.85h"
+    fov: "90t"
+    pitch: "75y"
+
+# Рекомендации по настройкам для разных типов городов
+recommendations:
+  small_city:          # Малый город (до 100к населения)
+    step_km: 0.08
+    search_radius: 40
+    max_points: 500
+    
+  medium_city:         # Средний город (100к-500к)
+    step_km: 0.12
+    search_radius: 50
+    max_points: 800
+    
+  large_city:          # Крупный город (500к-1млн)
+    step_km: 0.15
+    search_radius: 70
+    max_points: 1500
+    
+  metropolis:          # Мегаполис (более 1млн)
+    step_km: 0.20
+    search_radius: 100
+    max_points: 3000
+
+# Типичные ошибки и их решения
+troubleshooting:
+  no_panoramas_found:
+    - "Увеличьте search_radius до 80-100"
+    - "Уменьшите step_km до 0.08-0.10"
+    - "Проверьте активацию Street View Static API"
+    
+  api_limit_exceeded:
+    - "Увеличьте delay до 0.05-0.10"
+    - "Разделите поиск на несколько запусков"
+    - "Используйте несколько API ключей"
+    
+  low_efficiency:
+    - "Для плотной застройки: step_km=0.08, radius=30"
+    - "Для пригородов: step_km=0.20, radius=80"
+    - "Для парков: step_km=0.15, radius=60"
+
+metadata:
+  created: "2024-01-01"
+  version: "1.0"
+  config_version: "1.0"
