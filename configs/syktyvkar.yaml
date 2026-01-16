@@ -1,0 +1,48 @@
+name: "Сыктывкар"
+description: "Столица Республики Коми, Россия"
+author: "Ваше Имя"
+
+bounds:
+  lat_min: 61.66
+  lat_max: 61.69
+  lon_min: 50.81
+  lon_max: 50.86
+
+search_params:
+  step_km: 0.12      # ~130 метров
+  search_radius: 50  # метров
+  max_points: 800
+  delay: 0.03        # секунд между запросами
+
+output:
+  filename: "сыктывкар_панорамы.txt"
+  format: "google.de"
+  tile_size: "13312x6656"
+  zoom: "3a,75y,2.85h,90t"
+
+hotspots:
+  - name: "Площадь Ленина"
+    coords: [61.668742, 50.835369]
+    type: "площадь"
+    
+  - name: "Эжвинский район"
+    coords: [61.659012, 50.809123]
+    type: "район"
+    
+  - name: "Парк Кирова"
+    coords: [61.669876, 50.842345]
+    type: "парк"
+    
+  - name: "Железнодорожный вокзал"
+    coords: [61.670987, 50.828765]
+    type: "транспорт"
+    
+  - name: "Коми государственный университет"
+    coords: [61.665432, 50.832109]
+    type: "образование"
+
+metadata:
+  created: "2024-01-01"
+  version: "1.0"
+  recommended_for: "openguessr карты"
+  estimated_panoramas: 150
