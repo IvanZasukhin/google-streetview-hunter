@@ -1,0 +1,48 @@
+name: "Москва (центр)"
+description: "Центральная часть Москвы, Россия"
+author: "Ваше Имя"
+
+bounds:
+  lat_min: 55.75
+  lat_max: 55.78
+  lon_min: 37.60
+  lon_max: 37.65
+
+search_params:
+  step_km: 0.15      # ~165 метров
+  search_radius: 80  # метров
+  max_points: 2000
+  delay: 0.02        # секунд между запросами
+
+output:
+  filename: "москва_центр_панорамы.txt"
+  format: "google.de"
+  tile_size: "16384x8192"
+  zoom: "3a,75y,90t"
+
+hotspots:
+  - name: "Красная площадь"
+    coords: [55.7539, 37.6208]
+    type: "площадь"
+    
+  - name: "Московский Кремль"
+    coords: [55.7517, 37.6178]
+    type: "достопримечательность"
+    
+  - name: "Парк Горького"
+    coords: [55.7294, 37.6030]
+    type: "парк"
+    
+  - name: "Арбат"
+    coords: [55.7504, 37.5905]
+    type: "улица"
+    
+  - name: "ВДНХ"
+    coords: [55.8295, 37.6316]
+    type: "выставка"
+
+metadata:
+  created: "2024-01-01"
+  version: "1.0"
+  recommended_for: "обзор города, туризм"
+  estimated_panoramas: 500
