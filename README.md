@@ -165,4 +165,4 @@ for city in cities:
 
 Иван Засухин - ivanzasukhin11@gmail.com
 
-Ссылка на проект: [https://github.com/ваш-username/google-streetview-hunter](https://github.com/ваш-username/google-streetview-hunter)
+Ссылка на проект: [https://github.com/IvanZasukhin/google-streetview-hunter](https://github.com/IvanZasukhin/google-streetview-hunter)
