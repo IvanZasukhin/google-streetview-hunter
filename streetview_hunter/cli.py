@@ -162,4 +162,83 @@ def validate_arguments(args):
         print("❌ Ошибка: --max-points должен быть больше 0")
         return False
     
-    if
+    if args.delay < 0.01:
+        print("⚠️  Предупреждение: очень маленькая задержка может привести к блокировке API")
+    
+    return True
+
+
+def main():
+    """Основная функция CLI."""
+    
+    # Парсинг аргументов
+    args = parse_arguments()
+    
+    # Проверка аргументов
+    if not validate_arguments(args):
+        sys.exit(1)
+    
+    # Создание охотника
+    try:
+        hunter = StreetViewHunter(args.api_key)
+    except Exception as e:
+        print(f"❌ Ошибка создания StreetViewHunter: {e}")
+        sys.exit(1)
+    
+    # Запуск поиска
+    try:
+        if args.config:
+            # Режим с конфигурационным файлом
+            if args.verbose:
+                print(f"📁 Загружаю конфигурацию из: {args.config}")
+            
+            config = load_config(args.config)
+            
+            # Переопределяем выходной файл, если указан в аргументах
+            if args.output != "panoramas.txt":
+                config['output']['filename'] = args.output
+            
+            stats = hunter.search_from_config(config)
+            
+        else:
+            # Режим с аргументами командной строки
+            if args.verbose:
+                print(f"📍 Область поиска: {args.lat_min:.5f}-{args.lat_max:.5f}, "
+                      f"{args.lon_min:.5f}-{args.lon_max:.5f}")
+                print(f"⚙️  Параметры: шаг={args.step_km}км, радиус={args.search_radius}м")
+            
+            stats = hunter.search_area(
+                lat_min=args.lat_min,
+                lat_max=args.lat_max,
+                lon_min=args.lon_min,
+                lon_max=args.lon_max,
+                step_km=args.step_km,
+                search_radius=args.search_radius,
+                max_points=args.max_points,
+                output_file=args.output,
+                delay=args.delay
+            )
+        
+        # Вывод дополнительной статистики
+        if args.verbose:
+            print("\n📈 ДОПОЛНИТЕЛЬНАЯ СТАТИСТИКА:")
+            search_stats = hunter.get_stats()
+            for key, value in search_stats.items():
+                print(f"  {key}: {value}")
+        
+        sys.exit(0)
+        
+    except KeyboardInterrupt:
+        print("\n\n⚠️  Поиск прерван пользователем")
+        sys.exit(130)
+        
+    except Exception as e:
+        print(f"\n❌ КРИТИЧЕСКАЯ ОШИБКА: {e}")
+        if args.verbose:
+            import traceback
+            traceback.print_exc()
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
