@@ -160,3 +160,9 @@ for city in cities:
 Для больших городов: Используйте step_km=0.20-0.30 и search_radius=80-100
 
 Для точного поиска: step_km=0.08-0.12 и search_radius=30-50
+
+## 📞 Контакты
+
+Иван Засухин - ivanzasukhin11@gmail.com
+
+Ссылка на проект: [https://github.com/ваш-username/google-streetview-hunter](https://github.com/ваш-username/google-streetview-hunter)
